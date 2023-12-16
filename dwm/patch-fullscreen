@@ -1,0 +1,40 @@
+--- config.def.h.orig	2022-10-04 20:38:18.000000000 +0300
++++ config.def.h	2023-12-16 17:08:04.565880000 +0300
+@@ -76,6 +76,7 @@
+ 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+ 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
++	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+ 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+--- dwm.c.orig	2022-10-04 20:38:18.000000000 +0300
++++ dwm.c	2023-12-16 17:08:04.566781000 +0300
+@@ -200,6 +200,7 @@
+ static void setclientstate(Client *c, long state);
+ static void setfocus(Client *c);
+ static void setfullscreen(Client *c, int fullscreen);
++static void fullscreen(const Arg *arg);
+ static void setlayout(const Arg *arg);
+ static void setmfact(const Arg *arg);
+ static void setup(void);
+@@ -1496,6 +1497,19 @@
+ 		resizeclient(c, c->x, c->y, c->w, c->h);
+ 		arrange(c->mon);
+ 	}
++}
++
++Layout *last_layout;
++void
++fullscreen(const Arg *arg)
++{
++	if (selmon->showbar) {
++		for(last_layout = (Layout *)layouts; last_layout != selmon->lt[selmon->sellt]; last_layout++);
++		setlayout(&((Arg) { .v = &layouts[2] }));
++	} else {
++		setlayout(&((Arg) { .v = last_layout }));
++	}
++	togglebar(arg);
+ }
+ 
+ void

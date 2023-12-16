@@ -1,3 +1,14 @@
+--- config.def.h.orig	2022-10-04 20:41:26.000000000 +0300
++++ config.def.h	2023-12-10 21:42:11.958513000 +0300
+@@ -201,6 +201,8 @@
+ 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+ 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
++	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
++	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+ };
+ 
+ /*
 --- st.c.orig	2022-10-04 20:41:26.000000000 +0300
 +++ st.c	2023-12-10 21:42:11.959909000 +0300
 @@ -35,6 +35,7 @@
@@ -322,3 +333,14 @@
  	term.ocx = cx;
  	term.ocy = term.c.y;
  	xfinishdraw();
+--- st.h.orig	2022-10-04 20:41:26.000000000 +0300
++++ st.h	2023-12-10 21:42:11.960234000 +0300
+@@ -81,6 +81,8 @@
+ void redraw(void);
+ void draw(void);
+ 
++void kscrolldown(const Arg *);
++void kscrollup(const Arg *);
+ void printscreen(const Arg *);
+ void printsel(const Arg *);
+ void sendbreak(const Arg *);
