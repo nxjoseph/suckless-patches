@@ -1,0 +1,18 @@
+--- config.def.h.orig	2024-01-16 23:13:07.277197000 +0300
++++ config.def.h	2024-01-16 23:14:43.068334000 +0300
+@@ -63,6 +63,7 @@
+ static const char *decrvol[] = { "sndioctl", "output.level=-0.1", NULL };
+ static const char *mutevol[] = { "sndioctl", "output.level=!", NULL };
+ static const char *takess[]  = { "scrot", NULL };
++static const char *chwp[]    = { "feh", "--randomize", "--bg-scale", "/home/yusuf/Pictures/", NULL };
+ 
+ #define XK_XF86AudioLowerVolume 0x1008ff11
+ #define XK_XF86AudioMute	0x1008ff12
+@@ -111,6 +112,7 @@
+ 	{ 0x0,				XK_XF86AudioLowerVolume,	spawn,	{.v = decrvol } },
+ 	{ 0x0,				XK_XF86AudioMute,		spawn,	{.v = mutevol } },
+ 	{ 0x0,				XK_Print,			spawn,	{.v = takess  } },
++	{ MODKEY,			XK_s,				spawn,	{.v = chwp    } },
+ };
+ 
+ /* button definitions */
