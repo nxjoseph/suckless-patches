@@ -12,7 +12,7 @@
  	{ 0x0,				XK_XF86AudioLowerVolume,	spawn,	{.v = decrvol } },
  	{ 0x0,				XK_XF86AudioMute,		spawn,	{.v = mutevol } },
  	{ 0x0,				XK_Print,			spawn,	{.v = takess  } },
-+	{ MODKEY,			XK_s,				spawn,	{.v = chwp    } },
++	{ MODKEY,			XK_w,				spawn,	{.v = chwp    } },
  };
  
  /* button definitions */
