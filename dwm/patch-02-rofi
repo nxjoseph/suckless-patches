@@ -1,11 +1,11 @@
---- config.def.h.orig	2024-05-14 20:25:53.456670000 +0300
-+++ config.def.h	2024-05-14 20:26:04.942404000 +0300
+--- config.def.h.orig	2024-06-11 14:49:44.758048000 +0300
++++ config.def.h	2024-06-11 14:49:56.786132000 +0300
 @@ -57,7 +57,7 @@
  
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 -static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-c", NULL };
++static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
  static const char *termcmd[]  = { "st", NULL };
  
  static const Key keys[] = {
