@@ -1,0 +1,11 @@
+--- config.def.h.orig	2024-06-30 17:39:15.788692000 +0300
++++ config.def.h	2024-06-30 17:40:49.901116000 +0300
+@@ -25,7 +25,7 @@
+ };
+ 
+ /* tagging */
+-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
++static const char *tags[] = { "󰈹", "", "", "", "󰍳", "󰍳", "7", "8", "9" };
+ 
+ static const Rule rules[] = {
+ 	/* xprop(1):
