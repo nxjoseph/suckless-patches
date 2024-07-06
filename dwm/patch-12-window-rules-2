@@ -1,10 +1,11 @@
---- config.def.h.orig	2024-07-04 22:24:57.643374000 +0300
-+++ config.def.h	2024-07-04 22:26:01.195548000 +0300
-@@ -40,6 +40,7 @@
+--- config.def.h.orig	2024-07-06 19:08:25.786486000 +0300
++++ config.def.h	2024-07-06 19:08:51.033216000 +0300
+@@ -40,6 +40,8 @@
    { "thunderbird", NULL, NULL,          1 << 3,       1,             0,           -1 },
    { "Minecraft* 1.20.4", NULL, NULL, 1 << 5, 1, 0, -1 },
    { "PrismLauncher", NULL, NULL, 1 << 4, 1, 0, -1 },
 +  { "Code - OSS", NULL, NULL, 1 << 6, 1, 0, -1 },
++  { "DiscordBSD", NULL, NULL, 1 << 8, 1, 0, -1 },
  };
  
  /* layout(s) */
