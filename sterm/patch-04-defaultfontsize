@@ -1,0 +1,62 @@
+--- st.1.orig	2024-03-19 14:22:51.000000000 +0300
++++ st.1	2024-09-10 11:58:50.321401000 +0300
+@@ -22,6 +22,8 @@
+ .IR line ]
+ .RB [ \-w
+ .IR windowid ]
++.RB [ \-z
++.IR fontsize ]
+ .RB [[ \-e ]
+ .IR command
+ .RI [ arguments ...]]
+@@ -44,6 +46,8 @@
+ .IR title ]
+ .RB [ \-w
+ .IR windowid ]
++.RB [ \-z
++.IR fontsize ]
+ .RB \-l
+ .IR line
+ .RI [ stty_args ...]
+@@ -90,6 +94,10 @@
+ .BI \-w " windowid"
+ embeds st within the window identified by
+ .I windowid
++.TP
++.BI \-z " fontsize"
++sets the default fontsize to
++.I fontsize
+ .TP
+ .BI \-l " line"
+ use a tty
+--- x.c.orig	2024-03-19 14:22:51.000000000 +0300
++++ x.c	2024-09-10 11:58:50.321765000 +0300
+@@ -4,6 +4,7 @@
+ #include <limits.h>
+ #include <locale.h>
+ #include <signal.h>
++#include <stdlib.h>
+ #include <sys/select.h>
+ #include <time.h>
+ #include <unistd.h>
+@@ -1145,7 +1146,7 @@
+ 		die("could not init fontconfig.\n");
+ 
+ 	usedfont = (opt_font == NULL)? font : opt_font;
+-	xloadfonts(usedfont, 0);
++	xloadfonts(usedfont, defaultfontsize);
+ 
+ 	/* colors */
+ 	xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
+@@ -2073,6 +2074,11 @@
+ 		break;
+ 	case 'v':
+ 		die("%s " VERSION "\n", argv0);
++		break;
++	case 'z':
++		defaultfontsize = strtod(EARGF(usage()), NULL);
++		if (!(defaultfontsize > 0))
++			usage();
+ 		break;
+ 	default:
+ 		usage();
