@@ -1,0 +1,20 @@
+--- config.def.h.orig	2024-09-11 13:04:57.935058000 +0300
++++ config.def.h	2024-09-11 13:05:56.447960000 +0300
+@@ -33,8 +33,15 @@
+ 	 *	WM_NAME(STRING) = title
+ 	 */
+ 	/* class      instance    title       tags mask     switchtotag    isfloating   monitor */
+-	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
+-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,             0,           -1 },
++	{ "st-256color",     NULL,       NULL,       2 << 0,            1,             0,           -1 },
++	{ "firefox",  NULL,       NULL,       1 << 0,       1,             0,           -1 },
++	{ "Signal",   NULL,       NULL,       1 << 2,       1,             0,           -1 },
++	{ "TelegramDesktop", NULL, NULL, 1 << 2, 1, 0, -1 },
++	{ "thunderbird", NULL, NULL,          1 << 3,       1,             0,           -1 },
++	{ "Minecraft* 1.20.4", NULL, NULL, 1 << 5, 1, 0, -1 },
++	{ "PrismLauncher", NULL, NULL, 1 << 4, 1, 0, -1 },
++	{ "Code - OSS", NULL, NULL, 1 << 6, 1, 0, -1 },
++	{ "DiscordBSD", NULL, NULL, 1 << 8, 1, 0, -1 },
+ };
+ 
+ /* layout(s) */
