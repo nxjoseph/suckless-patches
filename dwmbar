@@ -1,0 +1,8 @@
+#!/bin/sh
+
+while true; do
+	TIME=$(date +"%A, %B %d, %Y %H:%M:%S")
+	LAYOUT=$(xkblayout-state print "%s")
+	xsetroot -name " $LAYOUT $TIME "
+	sleep 1
+done
