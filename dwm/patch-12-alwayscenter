@@ -1,0 +1,11 @@
+--- dwm.c.orig	2024-11-05 17:14:02.834953000 +0300
++++ dwm.c	2024-11-05 17:14:20.818630000 +0300
+@@ -1221,6 +1221,8 @@
+ 	updatewindowtype(c);
+ 	updatesizehints(c);
+ 	updatewmhints(c);
++	c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
++	c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
+ 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
+ 	grabbuttons(c, 0);
+ 	if (!c->isfloating)
