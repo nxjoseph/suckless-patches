@@ -1,10 +1,10 @@
---- config.def.h.orig	2024-11-05 15:00:18.501567000 +0300
-+++ config.def.h	2024-11-05 15:00:46.757363000 +0300
+--- config.def.h.orig	2024-11-24 17:05:38.282670000 +0300
++++ config.def.h	2024-11-24 17:05:59.849695000 +0300
 @@ -79,6 +79,7 @@
  static const char *decrvol[] = { "mixer", "vol.volume=-0.10", NULL };
  static const char *mutevol[] = { "mixer", "vol.mute=^", NULL };
  static const char *takess[]  = { "scrot", NULL };
-+static const char *chwp[]    = { "feh", "--randomize", "--bg-scale", "/home/yusuf/.wallpapers", NULL };
++static const char *chwp[]    = { "feh", "--randomize", "--bg-fill", "/home/yusuf/.wallpapers", NULL };
  
  #define XK_XF86AudioLowerVolume 0x1008ff11
  #define XK_XF86AudioMute	0x1008ff12
