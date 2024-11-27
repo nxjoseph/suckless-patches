@@ -1,0 +1,18 @@
+--- config.def.h.orig	2024-11-27 18:19:37.403527000 +0300
++++ config.def.h	2024-11-27 18:21:29.052876000 +0300
+@@ -78,6 +78,7 @@
+ static const char *mutevol[] = { "mixer", "vol.mute=^", NULL };
+ static const char *takess[]  = { "scrot", NULL };
+ static const char *chwp[]    = { "feh", "--randomize", "--bg-fill", "/home/yusuf/.wallpapers", NULL };
++static const char *translate[] = { "dmenu-translate", NULL };
+ 
+ #define XK_XF86AudioLowerVolume 0x1008ff11
+ #define XK_XF86AudioMute	0x1008ff12
+@@ -127,6 +128,7 @@
+ 	{ 0x0,				XK_XF86AudioMute,		spawn,	{.v = mutevol } },
+ 	{ 0x0,				XK_Print,			spawn,	{.v = takess  } },
+ 	{ MODKEY,                       XK_w,                           spawn,  {.v = chwp    } },
++	{ MODKEY|ShiftMask,		XK_t,				spawn,	{.v = translate } },
+ };
+ 
+ /* button definitions */
