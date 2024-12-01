@@ -1,0 +1,20 @@
+--- config.def.h.orig	2024-11-30 19:33:07.497958000 +0300
++++ config.def.h	2024-11-30 19:34:32.239582000 +0300
+@@ -79,6 +79,8 @@
+ static const char *takess[]  = { "scrot", NULL };
+ static const char *chwp[]    = { "feh", "--randomize", "--bg-fill", "/home/yusuf/.wallpapers", NULL };
+ static const char *translate[] = { "dmenu-translate", NULL };
++static const char *surfcmd[] = { "surf", "-u", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36", NULL };
++static const char *surftabbedcmd[] = { "tabbed", "surf", "-u", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36", "-e", NULL };
+ 
+ #define XK_XF86AudioLowerVolume 0x1008ff11
+ #define XK_XF86AudioMute	0x1008ff12
+@@ -88,6 +90,8 @@
+ 	/* modifier                     key        function        argument */
+ 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+ 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
++	{ MODKEY,                       XK_s,      spawn,          {.v = surfcmd } },
++	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = surftabbedcmd } },
+ 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+ 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+ 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
