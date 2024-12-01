@@ -1,0 +1,25 @@
+--- config.def.h.orig	2024-12-01 22:18:08.998947000 +0300
++++ config.def.h	2024-12-01 22:18:50.882884000 +0300
+@@ -28,6 +28,9 @@
+ /* Kerning / character bounding-box multipliers */
+ static float cwscale = 1.0;
+ static float chscale = 1.0;
++/* Character rendering offsets in pixels */
++static short cxoffset = 0;
++static short cyoffset = 0;
+ 
+ /*
+  * word delimiter string
+--- x.c.orig	2024-12-01 22:18:08.999978000 +0300
++++ x.c	2024-12-01 22:18:50.883266000 +0300
+@@ -1289,8 +1289,8 @@
+ 		if (glyphidx) {
+ 			specs[numspecs].font = font->match;
+ 			specs[numspecs].glyph = glyphidx;
+-			specs[numspecs].x = (short)xp;
+-			specs[numspecs].y = (short)yp;
++			specs[numspecs].x = (short)xp + cxoffset;
++			specs[numspecs].y = (short)yp + cyoffset;
+ 			xp += runewidth;
+ 			numspecs++;
+ 			continue;

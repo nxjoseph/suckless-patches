@@ -1,0 +1,10 @@
+--- x.c.orig	2024-12-01 22:34:38.223215000 +0300
++++ x.c	2024-12-01 22:34:47.616229000 +0300
+@@ -697,6 +697,7 @@
+ 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
+ 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
+ 		selclear();
++	clipcopy(NULL);
+ }
+ 
+ void

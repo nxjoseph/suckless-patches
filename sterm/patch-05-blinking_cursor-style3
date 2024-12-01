@@ -1,0 +1,11 @@
+--- config.def.h.orig	2024-12-01 21:54:16.161407000 +0300
++++ config.def.h	2024-12-01 22:16:11.753518000 +0300
+@@ -139,7 +139,7 @@
+  * 7: blinking st cursor
+  * 8: steady st cursor
+  */
+-static unsigned int cursorstyle = 1;
++static unsigned int cursorstyle = 3;
+ static Rune stcursor = 0x2603; /* snowman ("☃") */
+ 
+ /*
