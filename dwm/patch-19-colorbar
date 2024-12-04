@@ -1,0 +1,66 @@
+--- config.def.h.orig	2024-12-04 21:09:44.137755000 +0300
++++ config.def.h	2024-12-04 21:09:59.548168000 +0300
+@@ -22,6 +22,11 @@
+ 	/*               fg         bg         border   */
+ 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+ 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
++	[SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
++	[SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
++	[SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
++	[SchemeInfoSel]  = { col_gray4, col_cyan,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
++	[SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+ };
+ 
+ /* tagging */
+@@ -161,4 +166,3 @@
+ 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+ 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+ };
+-
+--- dwm.c.orig	2024-12-04 21:09:44.136853000 +0300
++++ dwm.c	2024-12-04 21:12:57.631274000 +0300
+@@ -73,7 +73,7 @@
+ 
+ /* enums */
+ enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
+-enum { SchemeNorm, SchemeSel }; /* color schemes */
++enum { SchemeNorm, SchemeSel, SchemeStatus, SchemeTagsSel, SchemeTagsNorm, SchemeInfoSel, SchemeInfoNorm }; /* color schemes */
+ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
+        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
+        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
+@@ -829,7 +829,7 @@
+ 
+ 	/* draw status first so it can be overdrawn by tags later */
+ 	if (m == selmon) { /* status is only drawn on selected monitor */
+-		drw_setscheme(drw, scheme[SchemeNorm]);
++		drw_setscheme(drw, scheme[SchemeStatus]);
+                 tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
+                 drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
+ 	}
+@@ -863,22 +863,22 @@
+ 			snprintf(tagdisp, 64, etagf, tags[i]);
+ 		masterclientontag[i] = tagdisp;
+ 		tagw[i] = w = TEXTW(masterclientontag[i]);
+-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
++		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
+ 		drw_text(drw, x, 0, w, bh, lrpad / 2, masterclientontag[i], urg & 1 << i);
+ 		x += w;
+ 	}
+ 	w = TEXTW(m->ltsymbol);
+-	drw_setscheme(drw, scheme[SchemeNorm]);
++	drw_setscheme(drw, scheme[SchemeTagsNorm]);
+ 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+ 
+ 	if ((w = m->ww - tw - stw - x) > bh) {
+ 		if (m->sel) {
+-			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
++			drw_setscheme(drw, scheme[m == selmon ? SchemeInfoSel : SchemeInfoNorm]);
+ 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
+ 			if (m->sel->isfloating)
+ 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+ 		} else {
+-			drw_setscheme(drw, scheme[SchemeNorm]);
++			drw_setscheme(drw, scheme[SchemeInfoNorm]);
+ 			drw_rect(drw, x, 0, w, bh, 1, 1);
+ 		}
+ 	}

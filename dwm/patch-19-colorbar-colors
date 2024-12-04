@@ -1,0 +1,27 @@
+--- config.def.h.orig	2024-12-04 21:21:55.988671000 +0300
++++ config.def.h	2024-12-04 21:23:10.603665000 +0300
+@@ -18,15 +18,19 @@
+ static const char col_gray3[]       = "#bbbbbb";
+ static const char col_gray4[]       = "#eeeeee";
+ static const char col_cyan[]        = "#005577";
++static const char col_red[]        = "#a54242";
++static const char col_red1[]       = "#cc6666";
++static const char col_yellow[]     = "#b5bd68";
++static const char col_lightblue[]   = "#5f819d";
+ static const char *colors[][3]      = {
+ 	/*               fg         bg         border   */
+ 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+ 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+-	[SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+-	[SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+-	[SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+-	[SchemeInfoSel]  = { col_gray4, col_cyan,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+-	[SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
++	[SchemeStatus]  = { col_gray3, col_lightblue,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
++	[SchemeTagsSel]  = { col_gray4, col_red1,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
++	[SchemeTagsNorm]  = { col_gray3, col_red,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
++	[SchemeInfoSel]  = { col_gray4, col_yellow,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
++	[SchemeInfoNorm]  = { col_gray3, col_yellow,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+ };
+ 
+ /* tagging */
