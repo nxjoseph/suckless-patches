@@ -1,12 +1,12 @@
---- config.def.h.orig	2024-12-03 18:06:02.453959000 +0300
-+++ config.def.h	2024-12-03 18:07:01.578681000 +0300
+--- config.def.h.orig	2024-12-15 22:11:16.828625000 +0300
++++ config.def.h	2024-12-15 22:11:46.219110000 +0300
 @@ -37,8 +37,13 @@
  	 *	WM_NAME(STRING) = title
  	 */
  	/* class      instance    title       tags mask     switchtotag    isfloating   monitor */
 -	{ "Gimp",     NULL,       NULL,       0,            0,             1,           -1 },
 -	{ "Firefox",  NULL,       NULL,       1 << 8,       0,             0,           -1 },
-+	{ "Chromium-browser",  NULL,       NULL,       1 << 0,       1,             0,           -1 },
++	{ "firefox",  NULL,       NULL,       1 << 0,       1,             0,           -1 },
 +	{ "st-256color",     NULL,       NULL,       2 << 0,            1,             0,           -1 },
 +	{ "Signal",   NULL,       NULL,       1 << 2,       1,             0,           -1 },
 +	{ "TelegramDesktop", NULL, NULL,      1 << 2,	    1,		   0,		-1 },
