@@ -1,6 +1,6 @@
---- config.def.h.orig	2024-03-19 14:22:51.000000000 +0300
-+++ config.def.h	2024-11-05 14:59:00.773255000 +0300
-@@ -96,32 +96,24 @@
+--- config.def.h.orig	2024-12-24 22:06:13.945974000 +0300
++++ config.def.h	2024-12-24 22:12:16.357056000 +0300
+@@ -99,32 +99,24 @@
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
  	/* 8 normal colors */
@@ -49,7 +49,7 @@
  };
  
  
-@@ -129,9 +121,9 @@
+@@ -132,9 +124,9 @@
   * Default colors (colorname index)
   * foreground, background, cursor, reverse cursor
   */

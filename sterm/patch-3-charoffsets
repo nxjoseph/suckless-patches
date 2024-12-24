@@ -1,5 +1,5 @@
---- config.def.h.orig	2024-12-01 22:18:08.998947000 +0300
-+++ config.def.h	2024-12-01 22:18:50.882884000 +0300
+--- config.def.h.orig	2024-12-24 22:03:26.483545000 +0300
++++ config.def.h	2024-12-24 22:05:12.789374000 +0300
 @@ -28,6 +28,9 @@
  /* Kerning / character bounding-box multipliers */
  static float cwscale = 1.0;
@@ -10,9 +10,9 @@
  
  /*
   * word delimiter string
---- x.c.orig	2024-12-01 22:18:08.999978000 +0300
-+++ x.c	2024-12-01 22:18:50.883266000 +0300
-@@ -1289,8 +1289,8 @@
+--- x.c.orig	2024-12-24 22:04:22.943995000 +0300
++++ x.c	2024-12-24 22:05:12.789819000 +0300
+@@ -1290,8 +1290,8 @@
  		if (glyphidx) {
  			specs[numspecs].font = font->match;
  			specs[numspecs].glyph = glyphidx;

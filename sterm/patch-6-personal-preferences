@@ -1,6 +1,17 @@
---- config.def.h.orig	2024-12-01 17:02:58.596980000 +0300
-+++ config.def.h	2024-12-01 17:03:41.559865000 +0300
-@@ -185,9 +185,9 @@
+--- config.def.h.orig	2024-12-24 22:12:49.804669000 +0300
++++ config.def.h	2024-12-24 22:13:36.944556000 +0300
+@@ -5,8 +5,8 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+-static int borderpx = 2;
++static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=24:antialias=true:autohint=true";
++static int borderpx = 0;
+ 
+ /*
+  * What program is execed by st depends of these precedence rules:
+@@ -190,9 +190,9 @@
  	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
  	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
  	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
