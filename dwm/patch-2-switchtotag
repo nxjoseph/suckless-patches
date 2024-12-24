@@ -1,5 +1,5 @@
---- config.def.h.orig	2022-10-04 20:38:18.000000000 +0300
-+++ config.def.h	2024-01-31 20:59:48.875492000 +0300
+--- config.def.h.orig	2024-12-24 21:06:00.116574000 +0300
++++ config.def.h	2024-12-24 21:07:18.192873000 +0300
 @@ -26,9 +26,9 @@
  	 *	WM_CLASS(STRING) = instance, class
  	 *	WM_NAME(STRING) = title
@@ -13,8 +13,8 @@
  };
  
  /* layout(s) */
---- dwm.c.orig	2022-10-04 20:38:18.000000000 +0300
-+++ dwm.c	2024-01-31 20:59:48.876684000 +0300
+--- dwm.c.orig	2024-12-24 21:06:00.117695000 +0300
++++ dwm.c	2024-12-24 21:07:18.193521000 +0300
 @@ -92,6 +92,7 @@
  	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
  	int bw, oldbw;
@@ -43,7 +43,7 @@
  		}
  	}
  	if (ch.res_class)
-@@ -1781,6 +1788,10 @@
+@@ -1813,6 +1820,10 @@
  	focus(NULL);
  	updateclientlist();
  	arrange(m);

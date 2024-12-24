@@ -1,5 +1,5 @@
---- config.def.h.orig	2024-11-24 22:04:01.210661000 +0300
-+++ config.def.h	2024-11-24 22:04:25.053123000 +0300
+--- config.def.h.orig	2024-12-24 21:08:41.187511000 +0300
++++ config.def.h	2024-12-24 21:11:34.514069000 +0300
 @@ -2,6 +2,7 @@
  
  /* appearance */
@@ -8,7 +8,7 @@
  static const unsigned int snap      = 32;       /* snap pixel */
  static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
  static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
-@@ -111,6 +112,9 @@
+@@ -95,6 +96,9 @@
  	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
  	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
@@ -18,8 +18,8 @@
  	TAGKEYS(                        XK_1,                      0)
  	TAGKEYS(                        XK_2,                      1)
  	TAGKEYS(                        XK_3,                      2)
---- dwm.c.orig	2024-11-24 22:04:01.213554000 +0300
-+++ dwm.c	2024-11-24 22:04:45.020483000 +0300
+--- dwm.c.orig	2024-12-24 21:10:54.213115000 +0300
++++ dwm.c	2024-12-24 21:11:53.731239000 +0300
 @@ -136,6 +136,7 @@
  	int by;               /* bar geometry */
  	int mx, my, mw, mh;   /* screen size */
@@ -28,15 +28,15 @@
  	unsigned int seltags;
  	unsigned int sellt;
  	unsigned int tagset[2];
-@@ -229,6 +230,7 @@
+@@ -228,6 +229,7 @@
+ static void setclientstate(Client *c, long state);
  static void setfocus(Client *c);
  static void setfullscreen(Client *c, int fullscreen);
- static void fullscreen(const Arg *arg);
 +static void setgaps(const Arg *arg);
+ static void fullscreen(const Arg *arg);
  static void setlayout(const Arg *arg);
  static void setmfact(const Arg *arg);
- static void setup(void);
-@@ -746,6 +748,7 @@
+@@ -745,6 +747,7 @@
  	m->nmaster = nmaster;
  	m->showbar = showbar;
  	m->topbar = topbar;
@@ -44,7 +44,7 @@
  	m->lt[0] = &layouts[0];
  	m->lt[1] = &layouts[1 % LENGTH(layouts)];
  	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
-@@ -1749,6 +1752,16 @@
+@@ -1740,6 +1743,16 @@
  }
  
  void
@@ -61,7 +61,7 @@
  setlayout(const Arg *arg)
  {
  	if (!arg || !arg->v || arg->v != selmon->lt[selmon->sellt])
-@@ -1956,18 +1969,18 @@
+@@ -1938,18 +1951,18 @@
  	if (n > m->nmaster)
  		mw = m->nmaster ? m->ww * m->mfact : 0;
  	else

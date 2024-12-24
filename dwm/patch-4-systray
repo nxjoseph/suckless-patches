@@ -1,5 +1,5 @@
---- config.def.h.orig	2024-09-19 15:04:57.747859000 +0300
-+++ config.def.h	2024-09-19 15:05:13.231596000 +0300
+--- config.def.h.orig	2024-12-24 21:08:04.135821000 +0300
++++ config.def.h	2024-12-24 21:08:41.187511000 +0300
 @@ -3,6 +3,11 @@
  /* appearance */
  static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -11,9 +11,9 @@
 +static const int showsystray        = 1;        /* 0 means no systray */
  static const int showbar            = 1;        /* 0 means no bar */
  static const int topbar             = 1;        /* 0 means bottom bar */
- static const char *fonts[]          = { "Agave Nerd Font:size=14" };
---- dwm.c.orig	2024-09-19 15:04:57.748256000 +0300
-+++ dwm.c	2024-09-19 15:07:15.121423000 +0300
+ static const char *fonts[]          = { "monospace:size=10" };
+--- dwm.c.orig	2024-12-24 21:08:04.136915000 +0300
++++ dwm.c	2024-12-24 21:10:12.339597000 +0300
 @@ -58,12 +58,27 @@
  #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
  #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
@@ -237,28 +237,28 @@
  	int boxs = drw->fonts->h / 9;
  	int boxw = drw->fonts->h / 6 + 2;
  	unsigned int i, occ = 0, urg = 0;
-@@ -725,13 +818,17 @@
+@@ -725,13 +818,18 @@
  	if (!m->showbar)
  		return;
  
-+        if(showsystray && m == systraytomon(m) && !systrayonleft)
-+                stw = getsystraywidth();
++	if(showsystray && m == systraytomon(m) && !systrayonleft)
++		stw = getsystraywidth();
 +
  	/* draw status first so it can be overdrawn by tags later */
  	if (m == selmon) { /* status is only drawn on selected monitor */
  		drw_setscheme(drw, scheme[SchemeNorm]);
 -		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
 -		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
-+                tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
-+                drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
++		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
++		drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
  	}
--
-+	
+ 
 +	resizebarwin(m);
++
  	for (i = 0; i < LENGTH(tags); i++)
  		masterclientontag[i] = NULL;
  
-@@ -768,7 +865,7 @@
+@@ -768,7 +866,7 @@
  	drw_setscheme(drw, scheme[SchemeNorm]);
  	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
  
@@ -267,7 +267,7 @@
  		if (m->sel) {
  			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
  			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
-@@ -779,7 +876,7 @@
+@@ -779,7 +877,7 @@
  			drw_rect(drw, x, 0, w, bh, 1, 1);
  		}
  	}
@@ -276,7 +276,7 @@
  }
  
  void
-@@ -816,8 +913,11 @@
+@@ -816,8 +914,11 @@
  	Monitor *m;
  	XExposeEvent *ev = &e->xexpose;
  
@@ -289,7 +289,7 @@
  }
  
  void
-@@ -903,14 +1003,32 @@
+@@ -903,14 +1004,32 @@
  	unsigned char *p = NULL;
  	Atom da, atom = None;
  
@@ -323,7 +323,7 @@
  int
  getrootptr(int *x, int *y)
  {
-@@ -1051,7 +1169,8 @@
+@@ -1051,7 +1170,8 @@
  {
  	if (!selmon->sel)
  		return;
@@ -333,7 +333,7 @@
  		XGrabServer(dpy);
  		XSetErrorHandler(xerrordummy);
  		XSetCloseDownMode(dpy, DestroyAll);
-@@ -1138,6 +1257,13 @@
+@@ -1138,6 +1258,13 @@
  	static XWindowAttributes wa;
  	XMapRequestEvent *ev = &e->xmaprequest;
  
@@ -347,7 +347,7 @@
  	if (!XGetWindowAttributes(dpy, ev->window, &wa) || wa.override_redirect)
  		return;
  	if (!wintoclient(ev->window))
-@@ -1259,6 +1385,17 @@
+@@ -1259,6 +1386,17 @@
  	Window trans;
  	XPropertyEvent *ev = &e->xproperty;
  
@@ -365,7 +365,7 @@
  	if ((ev->window == root) && (ev->atom == XA_WM_NAME))
  		updatestatus();
  	else if (ev->state == PropertyDelete)
-@@ -1310,6 +1447,19 @@
+@@ -1310,6 +1448,19 @@
  }
  
  void
@@ -385,7 +385,7 @@
  resize(Client *c, int x, int y, int w, int h, int interact)
  {
  	if (applysizehints(c, &x, &y, &w, &h, interact))
-@@ -1317,6 +1467,14 @@
+@@ -1317,6 +1468,14 @@
  }
  
  void
@@ -400,7 +400,7 @@
  resizeclient(Client *c, int x, int y, int w, int h)
  {
  	XWindowChanges wc;
-@@ -1332,6 +1490,19 @@
+@@ -1332,6 +1491,19 @@
  }
  
  void
@@ -420,7 +420,7 @@
  resizemouse(const Arg *arg)
  {
  	int ocx, ocy, nw, nh;
-@@ -1477,26 +1648,37 @@
+@@ -1477,26 +1649,37 @@
  }
  
  int
@@ -469,7 +469,7 @@
  	}
  	return exists;
  }
-@@ -1510,7 +1692,7 @@
+@@ -1510,7 +1693,7 @@
  			XA_WINDOW, 32, PropModeReplace,
  			(unsigned char *) &(c->win), 1);
  	}
@@ -478,7 +478,7 @@
  }
  
  void
-@@ -1619,6 +1801,10 @@
+@@ -1619,6 +1802,10 @@
  	wmatom[WMTakeFocus] = XInternAtom(dpy, "WM_TAKE_FOCUS", False);
  	netatom[NetActiveWindow] = XInternAtom(dpy, "_NET_ACTIVE_WINDOW", False);
  	netatom[NetSupported] = XInternAtom(dpy, "_NET_SUPPORTED", False);
@@ -489,7 +489,7 @@
  	netatom[NetWMName] = XInternAtom(dpy, "_NET_WM_NAME", False);
  	netatom[NetWMState] = XInternAtom(dpy, "_NET_WM_STATE", False);
  	netatom[NetWMCheck] = XInternAtom(dpy, "_NET_SUPPORTING_WM_CHECK", False);
-@@ -1626,6 +1812,9 @@
+@@ -1626,6 +1813,9 @@
  	netatom[NetWMWindowType] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", False);
  	netatom[NetWMWindowTypeDialog] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", False);
  	netatom[NetClientList] = XInternAtom(dpy, "_NET_CLIENT_LIST", False);
@@ -499,7 +499,7 @@
  	/* init cursors */
  	cursor[CurNormal] = drw_cur_create(drw, XC_left_ptr);
  	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
-@@ -1634,6 +1823,8 @@
+@@ -1634,6 +1824,8 @@
  	scheme = ecalloc(LENGTH(colors), sizeof(Clr *));
  	for (i = 0; i < LENGTH(colors); i++)
  		scheme[i] = drw_scm_create(drw, colors[i], 3);
@@ -508,7 +508,7 @@
  	/* init bars */
  	updatebars();
  	updatestatus();
-@@ -1764,7 +1955,18 @@
+@@ -1764,7 +1956,18 @@
  {
  	selmon->showbar = !selmon->showbar;
  	updatebarpos(selmon);
@@ -528,7 +528,7 @@
  	arrange(selmon);
  }
  
-@@ -1864,11 +2066,18 @@
+@@ -1864,11 +2067,18 @@
  		else
  			unmanage(c, 0);
  	}
@@ -547,7 +547,7 @@
  	Monitor *m;
  	XSetWindowAttributes wa = {
  		.override_redirect = True,
-@@ -1879,10 +2088,15 @@
+@@ -1879,10 +2089,15 @@
  	for (m = mons; m; m = m->next) {
  		if (m->barwin)
  			continue;
@@ -564,7 +564,7 @@
  		XMapRaised(dpy, m->barwin);
  		XSetClassHint(dpy, m->barwin, &ch);
  	}
-@@ -2059,9 +2273,128 @@
+@@ -2059,9 +2274,128 @@
  	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
  		strcpy(stext, "dwm-"VERSION);
  	drawbar(selmon);
@@ -693,7 +693,7 @@
  updatetitle(Client *c)
  {
  	if (!gettextprop(c->win, netatom[NetWMName], c->name, sizeof c->name))
-@@ -2126,6 +2459,16 @@
+@@ -2126,6 +2460,16 @@
  	return NULL;
  }
  
@@ -710,7 +710,7 @@
  Monitor *
  wintomon(Window w)
  {
-@@ -2177,6 +2520,22 @@
+@@ -2177,6 +2521,22 @@
  {
  	die("dwm: another window manager is already running");
  	return -1;

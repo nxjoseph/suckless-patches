@@ -1,6 +1,6 @@
---- config.def.h.orig	2022-10-04 20:38:18.000000000 +0300
-+++ config.def.h	2023-12-16 17:08:04.565880000 +0300
-@@ -76,6 +76,7 @@
+--- config.def.h.orig	2024-03-19 14:24:52.000000000 +0300
++++ config.def.h	2024-12-24 21:06:00.116574000 +0300
+@@ -77,6 +77,7 @@
  	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
  	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
  	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -8,8 +8,8 @@
  	{ MODKEY,                       XK_space,  setlayout,      {0} },
  	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
  	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
---- dwm.c.orig	2022-10-04 20:38:18.000000000 +0300
-+++ dwm.c	2023-12-16 17:08:04.566781000 +0300
+--- dwm.c.orig	2024-03-19 14:24:52.000000000 +0300
++++ dwm.c	2024-12-24 21:06:00.117695000 +0300
 @@ -200,6 +200,7 @@
  static void setclientstate(Client *c, long state);
  static void setfocus(Client *c);
@@ -18,7 +18,7 @@
  static void setlayout(const Arg *arg);
  static void setmfact(const Arg *arg);
  static void setup(void);
-@@ -1496,6 +1497,19 @@
+@@ -1505,6 +1506,19 @@
  		resizeclient(c, c->x, c->y, c->w, c->h);
  		arrange(c->mon);
  	}
