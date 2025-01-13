@@ -1,0 +1,8 @@
+#!/bin/sh
+
+st=$(pidof st)
+if [ -z "$st" ]; then
+	st tmux a
+else
+	notify-send "st is already open."
+fi
