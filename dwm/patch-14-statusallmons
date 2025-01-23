@@ -1,0 +1,24 @@
+--- dwm.c.orig	2025-01-23 22:51:31.793987000 +0300
++++ dwm.c	2025-01-23 22:53:08.535895000 +0300
+@@ -828,7 +828,7 @@
+ 		stw = getsystraywidth();
+ 
+ 	/* draw status first so it can be overdrawn by tags later */
+-	if (m == selmon) { /* status is only drawn on selected monitor */
++	if (m == selmon || 1) { /* status is only drawn on selected monitor */
+ 		drw_setscheme(drw, scheme[SchemeStatus]);
+ 		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
+ 		drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
+@@ -2323,9 +2323,11 @@
+ void
+ updatestatus(void)
+ {
++	Monitor* m;
+ 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
+ 		strcpy(stext, "dwm-"VERSION);
+-	drawbar(selmon);
++	for(m = mons; m; m = m->next)
++		drawbar(m);
+ 	updatesystray();
+ }
+ 
