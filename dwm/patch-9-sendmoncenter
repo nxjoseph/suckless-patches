@@ -1,0 +1,11 @@
+--- dwm.c.orig	2025-01-23 19:58:01.469181000 +0300
++++ dwm.c	2025-01-23 19:58:20.219853000 +0300
+@@ -1637,6 +1637,8 @@
+ 	detachstack(c);
+ 	c->mon = m;
+ 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
++    c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
++    c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
+ 	attach(c);
+ 	attachstack(c);
+ 	focus(NULL);
