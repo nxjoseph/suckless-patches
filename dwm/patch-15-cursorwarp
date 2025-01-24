@@ -1,0 +1,32 @@
+--- dwm.c.orig	2025-01-24 19:30:58.112744000 +0300
++++ dwm.c	2025-01-24 19:32:53.434246000 +0300
+@@ -1004,6 +1004,7 @@
+ 	if (c) {
+ 		focus(c);
+ 		restack(selmon);
++		XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w/2, c->h/2);
+ 	}
+ }
+ 
+@@ -1252,7 +1253,11 @@
+ 	c->mon->sel = c;
+ 	arrange(c->mon);
+ 	XMapWindow(dpy, c->win);
++	if (c && c->mon == selmon)
++		XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w/2, c->h/2);
+ 	focus(NULL);
++	if (selmon->sel)
++		XWarpPointer(dpy, None, selmon->sel->win, 0, 0, 0, 0, selmon->sel->w/2, selmon->sel->h/2);
+ 	warp(selmon->sel);
+ }
+ 
+@@ -1662,6 +1667,9 @@
+ 	attach(c);
+ 	attachstack(c);
+ 	arrange(m);
++	if (m == selmon && m->sel)
++		XWarpPointer(dpy, None, m->sel->win, 0, 0, 0, 0,
++	             m->sel->w/2, m->sel->h/2);
+ 	if (hadfocus) {
+ 		focus(c);
+ 		restack(m);
