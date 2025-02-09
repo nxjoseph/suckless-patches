@@ -1,8 +1,8 @@
 #!/bin/sh
 
 while true; do
-	TIME=$(date +"%A %d %B %H:%M")
+	TIME=$(date +"%a, %b %d %Y, %H:%M")
 	LAYOUT=$(xkblayout-state print "%s")
-	xsetroot -name "$LAYOUT $TIME"
+	xsetroot -name "󰌓  $LAYOUT | 󰃰  $TIME"
 	sleep 1
 done
