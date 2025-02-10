@@ -1,5 +1,5 @@
---- config.def.h.orig	2025-01-17 18:58:39.185310000 +0300
-+++ config.def.h	2025-01-17 18:59:49.509350000 +0300
+--- config.def.h.orig	2025-02-11 00:13:23.366469000 +0300
++++ config.def.h	2025-02-11 00:15:39.525979000 +0300
 @@ -11,22 +11,26 @@
  static const int showsystray        = 1;        /* 0 means no systray */
  static const int showbar            = 1;        /* 0 means no bar */
@@ -78,14 +78,14 @@
 @@ -114,6 +124,13 @@
  	TAGKEYS(                        XK_8,                      7)
  	TAGKEYS(                        XK_9,                      8)
- 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-+	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   SHCMD("mixer vol.volume=+0.05") },
-+	{ MODKEY|ShiftMask,		XK_s,	   spawn,	   SHCMD("mixer vol.volume=-0.05") },
-+	{ MODKEY|ShiftMask,		XK_a,	   spawn,	   SHCMD("mixer vol.mute=^") },
-+	{ 0x0,				XK_Print,  spawn,	   SHCMD("scrot") },
-+	{ MODKEY,                       XK_w,      spawn,  	   SHCMD("feh --bg-fill --randomize /home/yusuf/.wallpapers") },
-+	{ MODKEY|ShiftMask,		XK_t,	   spawn,	   SHCMD("dmenu-translate") },
-+	{ MODKEY|ShiftMask,		XK_p,	   spawn,	   SHCMD("zathura /home/yusuf/Documents/porters-handbook_en.pdf") },
+ 	{ MODKEY|ShiftMask,             XK_q,      quitprompt,           {0} },
++	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("mixer vol.volume=+0.05") },
++	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("mixer vol.volume=-0.05") },
++	{ MODKEY|ShiftMask,             XK_a,      spawn,          SHCMD("mixer vol.mute=^") },
++	{ 0x0,                          XK_Print,  spawn,          SHCMD("scrot") },
++	{ MODKEY,                       XK_w,      spawn,          SHCMD("feh --bg-fill --randomize /home/yusuf/.wallpapers") },
++	{ MODKEY|ShiftMask,             XK_t,      spawn,          SHCMD("dmenu-translate") },
++	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("zathura /home/yusuf/Documents/porters-handbook_en.pdf") },
  };
  
  /* button definitions */
