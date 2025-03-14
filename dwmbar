@@ -4,6 +4,7 @@ while true; do
 	TIME=$(date +"%a, %b %d %Y, %H:%M")
 	LAYOUT=$(xkblayout-state print "%s")
 	VOL=$(mixer vol.volume | cut -c 12- | cut -c 6-)
-	xsetroot -name "󰕾 $VOL | 󰌓  $LAYOUT | 󰃰  $TIME"
+	MUTE=$(mixer vol.mute | cut -c 10-)
+	xsetroot -name "mute $MUTE | 󰕾 $VOL | 󰌓  $LAYOUT | 󰃰  $TIME"
 	sleep 1
 done
