@@ -1,10 +1,15 @@
-#!/bin/sh
+#!/bin/csh
 
-while true; do
-	TIME=$(date +"%a, %b %d %Y, %H:%M")
-	LAYOUT=$(xkblayout-state print "%s")
-	VOL=$(mixer vol.volume | cut -c 12- | cut -c 6-)
-	MUTE=$(mixer vol.mute | cut -c 10-)
-	xsetroot -name "mute $MUTE | 󰕾 $VOL | 󰌓  $LAYOUT | 󰃰  $TIME"
+while (1)
+	set t=`date +"%a, %b %d %Y, %H:%M"`
+	set l=`xkblayout-state print "%s"`
+	set v=`mixer vol.volume | cut -c 12- | cut -c 6-`
+	set m=`mixer vol.mute | cut -c 10-`
+	if ( $m == "on" ) then
+		set m_val='󰝟'
+	else if ( $m == "off" ) then
+		set m_val='󰕾'
+	endif
+	xsetroot -name "$m_val $v | 󰌓  $l | 󰃰  $t"
 	sleep 1
-done
+end
